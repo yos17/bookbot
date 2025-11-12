@@ -5,6 +5,7 @@ require 'json'
 require 'net/http'
 require 'uri'
 require 'fileutils'
+require_relative 'ruby_tutor'
 
 # CLI Forge - AI-powered Unix CLI tool generator
 class CLIForge
@@ -25,6 +26,13 @@ class CLIForge
 
     if args[0] == '--version' || args[0] == '-v'
       puts "CLI Forge v#{VERSION}"
+      return
+    end
+
+    # Learning mode
+    if args[0] == 'learn'
+      tutor = RubyTutor.new
+      tutor.run(args[1..-1])
       return
     end
 
@@ -53,24 +61,47 @@ class CLIForge
     puts <<~HELP
       CLI Forge v#{VERSION} - AI-powered Unix CLI tool generator
 
-      Usage:
+      Modes:
+        🚀 GENERATE MODE (Default) - AI generates tools instantly
+        🎓 LEARNING MODE - Learn Ruby by building tools step-by-step
+
+      Generate Mode Usage:
         cli_forge <description>     Generate a CLI tool from description
         cli_forge list              List all generated tools
         cli_forge remove <name>     Remove a generated tool
+
+      Learning Mode Usage:
+        cli_forge learn list        Show all lessons
+        cli_forge learn start <id>  Start a lesson
+        cli_forge learn test <id>   Test your solution
+        cli_forge learn hint <id>   Get hints
+        cli_forge learn status      Show your progress
+
+      General:
         cli_forge --help, -h        Show this help message
         cli_forge --version, -v     Show version
 
-      Examples:
+      Generate Mode Examples:
         cli_forge "a tool that converts JSON to YAML"
         cli_forge "a tool that monitors system CPU usage and alerts when above 80%"
         cli_forge "a tool to batch rename files with regex patterns"
 
+      Learning Mode Examples:
+        cli_forge learn list                    # See all lessons
+        cli_forge learn start hello-world       # Start learning!
+        cli_forge learn test hello-world        # Test your code
+
       Setup:
-        Set your Anthropic API key:
-        export ANTHROPIC_API_KEY='your-api-key-here'
+        For Generate Mode - Set your Anthropic API key:
+          export ANTHROPIC_API_KEY='your-api-key-here'
+
+        For Learning Mode - No API key needed!
+          Just start learning: cli_forge learn list
 
       Generated tools are installed to: #{@tools_dir}
       Make sure this directory is in your PATH.
+
+      💡 Tip: Start with 'cli_forge learn list' to begin your Ruby journey!
     HELP
   end
 

@@ -2,17 +2,34 @@
 
 An AI-powered tool generator for Unix command line utilities, built with Ruby. Similar to Bolt/Lovable but specifically designed for creating CLI tools through natural language descriptions.
 
+**NEW**: 🎓 **Interactive Learning Mode** - Learn Ruby programming by building CLI tools step-by-step!
+
 ## What is CLI Forge?
 
-CLI Forge uses AI (Claude) to generate production-ready command line tools based on natural language descriptions. Just describe what you want, and CLI Forge will create a fully functional Unix CLI tool for you!
+CLI Forge has **two modes** to help you build amazing CLI tools:
+
+### 🚀 Generate Mode (Default)
+AI (Claude) generates production-ready command line tools instantly from natural language descriptions. Just describe what you want, and CLI Forge creates a fully functional Unix CLI tool for you!
+
+### 🎓 Learning Mode (NEW!)
+Learn Ruby programming through interactive tutorials. Build real CLI tools step-by-step with instant feedback, automated testing, and progressive hints. **No API key required!**
 
 ## Features
 
+### Generate Mode
 ✨ **AI-Powered Generation** - Describe your tool in plain English
 🚀 **Production Ready** - Generated tools include proper error handling, help text, and Unix conventions
 📦 **Self-Contained** - Minimal dependencies, tools just work
 🔧 **Easy Management** - List, install, and remove generated tools
 💎 **Ruby-Based** - Clean, readable, maintainable code
+
+### Learning Mode
+🎓 **Interactive Tutorials** - 6 comprehensive lessons from basics to advanced
+✅ **Automated Testing** - Test your code instantly with built-in tests
+💡 **Progressive Hints** - Get help when stuck without spoiling the solution
+📊 **Progress Tracking** - See your learning journey
+🛠️ **Real Projects** - Build actual CLI tools, not toy examples
+📚 **No API Key Needed** - Start learning immediately
 
 ## Installation
 
@@ -57,7 +74,7 @@ echo 'export ANTHROPIC_API_KEY="your-api-key-here"' >> ~/.bashrc
 
 ## Usage
 
-### Generate a Tool
+### Generate Mode - Get Tools Instantly
 
 Simply describe what you want:
 
@@ -73,17 +90,41 @@ cli_forge "a tool that monitors CPU usage and alerts when above 80%"
 cli_forge "a tool to batch rename files using regex patterns"
 ```
 
-### List Generated Tools
+Manage your generated tools:
 
 ```bash
-cli_forge list
+cli_forge list              # List all generated tools
+cli_forge remove <name>     # Remove a tool
 ```
 
-### Remove a Tool
+### Learning Mode - Learn Ruby by Building
+
+Start your Ruby learning journey:
 
 ```bash
-cli_forge remove <tool-name>
+# See all lessons
+cli_forge learn list
+
+# Start the first lesson
+cli_forge learn start hello-world
+
+# Test your solution
+cli_forge learn test hello-world
+
+# Get hints when stuck
+cli_forge learn hint hello-world
+
+# Check your progress
+cli_forge learn status
 ```
+
+**No API key needed for learning mode!** Jump right in:
+
+```bash
+cli_forge learn list
+```
+
+📚 **[Read the Complete Learning Guide](LEARNING_GUIDE.md)** for detailed tutorials and tips.
 
 ### Get Help
 
