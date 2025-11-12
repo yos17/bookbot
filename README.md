@@ -2,7 +2,7 @@
 
 An AI-powered tool generator for Unix command line utilities, built with Ruby. Similar to Bolt/Lovable but specifically designed for creating CLI tools through natural language descriptions.
 
-**NEW**: 🎓 **Interactive Learning Mode** - Learn Ruby programming by building CLI tools step-by-step!
+**NEW**: 🎓 **Dynamic Learning Mode** - AI creates personalized Ruby tutorials based on what YOU want to build!
 
 ## What is CLI Forge?
 
@@ -12,7 +12,7 @@ CLI Forge has **two modes** to help you build amazing CLI tools:
 AI (Claude) generates production-ready command line tools instantly from natural language descriptions. Just describe what you want, and CLI Forge creates a fully functional Unix CLI tool for you!
 
 ### 🎓 Learning Mode (NEW!)
-Learn Ruby programming through interactive tutorials. Build real CLI tools step-by-step with instant feedback, automated testing, and progressive hints. **No API key required!**
+Want to learn instead of just generate? Describe any CLI tool you want to build, and AI creates a **personalized step-by-step curriculum** just for you! Learn Ruby by building exactly what interests you.
 
 ## Features
 
@@ -24,19 +24,20 @@ Learn Ruby programming through interactive tutorials. Build real CLI tools step-
 💎 **Ruby-Based** - Clean, readable, maintainable code
 
 ### Learning Mode
-🎓 **Interactive Tutorials** - 6 comprehensive lessons from basics to advanced
-✅ **Automated Testing** - Test your code instantly with built-in tests
-💡 **Progressive Hints** - Get help when stuck without spoiling the solution
-📊 **Progress Tracking** - See your learning journey
-🛠️ **Real Projects** - Build actual CLI tools, not toy examples
-📚 **No API Key Needed** - Start learning immediately
+🎯 **Custom Curriculum** - AI generates lessons based on YOUR project idea
+📚 **Step-by-Step Guidance** - Break complex tools into manageable steps
+✅ **Automated Testing** - Test each step with instant feedback
+💡 **Dynamic Hints** - AI-generated hints specific to your project
+📊 **Progress Tracking** - Track your journey through each step
+🔄 **Compare & Learn** - See AI's solution vs yours
+🛠️ **Your Choice** - Learn by building what YOU want to build
 
 ## Installation
 
 ### Prerequisites
 
 - Ruby 2.7 or higher
-- An Anthropic API key ([get one here](https://console.anthropic.com/))
+- An Anthropic API key ([get one here](https://console.anthropic.com/)) - Required for both modes
 
 ### Quick Install
 
@@ -97,34 +98,44 @@ cli_forge list              # List all generated tools
 cli_forge remove <name>     # Remove a tool
 ```
 
-### Learning Mode - Learn Ruby by Building
+### Learning Mode - Learn by Building What You Want
 
-Start your Ruby learning journey:
+Describe what you want to learn to build, and AI creates a custom curriculum:
 
 ```bash
-# See all lessons
-cli_forge learn list
+# Start learning - describe YOUR project
+cli_forge learn build "a tool that converts JSON to YAML"
 
-# Start the first lesson
-cli_forge learn start hello-world
+# Work through the steps
+# Edit your code: ~/.cli_forge/learning/<project>.rb
 
-# Test your solution
-cli_forge learn test hello-world
+# Test your current step
+cli_forge learn test
 
 # Get hints when stuck
-cli_forge learn hint hello-world
+cli_forge learn hint
+
+# Move to next step when ready
+cli_forge learn next
 
 # Check your progress
 cli_forge learn status
+
+# Compare with AI's solution
+cli_forge learn code
 ```
 
-**No API key needed for learning mode!** Jump right in:
+**The AI adapts to YOUR learning goals!** Want to build a grep clone? System monitor? JSON parser? Just describe it and start learning!
 
+**Examples:**
 ```bash
-cli_forge learn list
+cli_forge learn build "a grep-like tool with regex support"
+cli_forge learn build "a system resource monitor with colors"
+cli_forge learn build "a markdown to HTML converter"
+cli_forge learn build "a git wrapper with shortcuts"
 ```
 
-📚 **[Read the Complete Learning Guide](LEARNING_GUIDE.md)** for detailed tutorials and tips.
+📚 **[Read the Dynamic Learning Guide](DYNAMIC_LEARNING.md)** for complete details, tips, and examples.
 
 ### Get Help
 

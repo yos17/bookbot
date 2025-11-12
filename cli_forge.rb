@@ -5,7 +5,7 @@ require 'json'
 require 'net/http'
 require 'uri'
 require 'fileutils'
-require_relative 'ruby_tutor'
+require_relative 'dynamic_tutor'
 
 # CLI Forge - AI-powered Unix CLI tool generator
 class CLIForge
@@ -31,7 +31,13 @@ class CLIForge
 
     # Learning mode
     if args[0] == 'learn'
-      tutor = RubyTutor.new
+      unless @api_key
+        puts "❌ Error: Learning mode requires ANTHROPIC_API_KEY"
+        puts "Set it with: export ANTHROPIC_API_KEY='your-api-key-here'"
+        puts "\n💡 Learning mode uses AI to create personalized tutorials!"
+        exit 1
+      end
+      tutor = DynamicTutor.new(@api_key)
       tutor.run(args[1..-1])
       return
     end
@@ -63,7 +69,7 @@ class CLIForge
 
       Modes:
         🚀 GENERATE MODE (Default) - AI generates tools instantly
-        🎓 LEARNING MODE - Learn Ruby by building tools step-by-step
+        🎓 LEARNING MODE - AI creates personalized tutorials for what YOU want to build!
 
       Generate Mode Usage:
         cli_forge <description>     Generate a CLI tool from description
@@ -71,11 +77,12 @@ class CLIForge
         cli_forge remove <name>     Remove a generated tool
 
       Learning Mode Usage:
-        cli_forge learn list        Show all lessons
-        cli_forge learn start <id>  Start a lesson
-        cli_forge learn test <id>   Test your solution
-        cli_forge learn hint <id>   Get hints
-        cli_forge learn status      Show your progress
+        cli_forge learn build "<description>"   Start learning to build something
+        cli_forge learn test                    Test your current step
+        cli_forge learn next                    Move to next step
+        cli_forge learn hint                    Get a hint
+        cli_forge learn status                  Show progress
+        cli_forge learn code                    Compare with AI solution
 
       General:
         cli_forge --help, -h        Show this help message
@@ -87,21 +94,19 @@ class CLIForge
         cli_forge "a tool to batch rename files with regex patterns"
 
       Learning Mode Examples:
-        cli_forge learn list                    # See all lessons
-        cli_forge learn start hello-world       # Start learning!
-        cli_forge learn test hello-world        # Test your code
+        cli_forge learn build "a tool that converts JSON to YAML"
+        cli_forge learn build "a grep clone with regex support"
+        cli_forge learn build "a system monitor with colored output"
 
       Setup:
-        For Generate Mode - Set your Anthropic API key:
+        Set your Anthropic API key (required for both modes):
           export ANTHROPIC_API_KEY='your-api-key-here'
-
-        For Learning Mode - No API key needed!
-          Just start learning: cli_forge learn list
 
       Generated tools are installed to: #{@tools_dir}
       Make sure this directory is in your PATH.
 
-      💡 Tip: Start with 'cli_forge learn list' to begin your Ruby journey!
+      💡 Tip: Want to learn Ruby? Try 'cli_forge learn build "your project idea"'
+         The AI will create a custom curriculum just for you!
     HELP
   end
 
